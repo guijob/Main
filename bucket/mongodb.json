@@ -1,28 +1,16 @@
 {
-    "version": "5.2.0",
-    "description": "A document database with the scalability and flexibility.",
     "homepage": "https://www.mongodb.org",
+    "description": "A document database with the scalability and flexibility.",
+    "version": "4.2.2",
     "license": {
         "identifier": "SSPL-1.0",
         "url": "https://www.mongodb.com/licensing/server-side-public-license"
     },
-    "notes": [
-        "Windows server 2012/2008 and Windows 7/8/8.1 need KB2999226 to provide Universal C Runtime support for Windows.",
-        "For more infomations, please refer to:",
-        "https://support.microsoft.com/en-us/help/2999226/update-for-universal-c-runtime-in-windows",
-        "",
-        "mongod shim use \"$dir\\bin\\mongod.cfg\" as the default config file.",
-        "To use a different config file, please run",
-        "\"$dir\\bin\\mongod.exe --config NEW_CONFIG_FILE\""
-    ],
-    "suggest": {
-        "Visual C/C++ Redistributable 2017": "extras/vcredist2017"
-    },
     "architecture": {
         "64bit": {
-            "url": "https://fastdl.mongodb.org/windows/mongodb-windows-x86_64-5.2.0-signed.msi",
-            "hash": "6c65d558422554e6ebc9340ce167868269f6f6d39a2ee6314abb0024016cde00",
-            "extract_dir": "MongoDB\\Server\\5.2"
+            "url": "https://parkahosted-apps.s3-sa-east-1.amazonaws.com/mongodb/mongodb-win32-x86_64-2012plus-4.2.2-signed.msi",
+            "hash": "c4574977ea850798329bfdb6e912145f683afd3b28fe363abdf51ead33446a94",
+            "extract_dir": "MongoDB\\Server\\4.2"
         }
     },
     "pre_install": [
@@ -34,33 +22,37 @@
         "}"
     ],
     "bin": [
+        "bin\\bsondump.exe",
         "bin\\mongo.exe",
         [
             "bin\\mongod.exe",
             "mongod",
             "--config \"$dir\\bin\\mongod.cfg\""
         ],
-        "bin\\mongos.exe"
+        "bin\\mongodump.exe",
+        "bin\\mongoexport.exe",
+        "bin\\mongofiles.exe",
+        "bin\\mongoimport.exe",
+        "bin\\mongorestore.exe",
+        "bin\\mongos.exe",
+        "bin\\mongostat.exe",
+        "bin\\mongotop.exe"
     ],
     "persist": [
         "bin\\mongod.cfg",
         "data",
         "log"
     ],
-    "checkver": {
-        "url": "http://downloads.mongodb.org/current.json",
-        "jsonpath": "$.versions..version",
-        "regex": "(\\d+(\\.\\d+)*)"
+    "suggest": {
+        "Visual C/C++ Redistributable 2017": "extras/vcredist2017"
     },
-    "autoupdate": {
-        "architecture": {
-            "64bit": {
-                "url": "https://fastdl.mongodb.org/windows/mongodb-windows-x86_64-$version-signed.msi",
-                "extract_dir": "MongoDB\\Server\\$majorVersion.$minorVersion"
-            }
-        },
-        "hash": {
-            "url": "$url.sha256"
-        }
-    }
+    "notes": [
+        "Windows server 2012/2008 and Windows 7/8/8.1 need KB2999226 to provide Universal C Runtime support for Windows.",
+        "For more infomations, please refer to:",
+        "https://support.microsoft.com/en-us/help/2999226/update-for-universal-c-runtime-in-windows",
+        "",
+        "mongod shim use \"$dir\\bin\\mongod.cfg\" as the default config file.",
+        "To use a different config file, please run",
+        "\"$dir\\bin\\mongod.exe --config NEW_CONFIG_FILE\""
+    ]
 }

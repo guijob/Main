@@ -1,0 +1,22 @@
+{
+    "homepage": "https://www.visualstudio.com/downloads/",
+    "description": "Microsoft Visual C++ Redistributable for Visual Studio 2017.",
+    "version": "14.16.27027.1",
+    "license": {
+        "identifier": "Freeware",
+        "url": "https://www.microsoft.com/en-us/legal/intellectualproperty/copyright/default.aspx"
+    },
+    "url": [
+        "https://parkahosted-apps.s3-sa-east-1.amazonaws.com/vcredist2017/vc_redist.x64.exe",
+        "https://parkahosted-apps.s3-sa-east-1.amazonaws.com/vcredist2017/vc_redist.x86.exe"
+    ],
+    "hash": [
+        "b192e143d55257a0a2f76be42e44ff8ee14014f3b1b196c6e59829b6b3ec453c",
+        "7355962b95d6a5441c304cd2b86baf37bc206f63349f4a02289bcfb69ef142d3"
+    ],
+    "post_install": [
+        "Invoke-ExternalCommand -FilePath \"$dir\\vc_redist.x64.exe\" -ArgumentList \"/fo /quiet /norestart\" -RunAs | Out-Null",
+        "Invoke-ExternalCommand -FilePath \"$dir\\vc_redist.x86.exe\" -ArgumentList \"/fo /quiet /norestart\" -RunAs | Out-Null"
+    ],
+    "notes": "You can now remove this installer with 'scoop uninstall vcredist2017'"
+}
